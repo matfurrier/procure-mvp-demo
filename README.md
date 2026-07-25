@@ -113,7 +113,7 @@ ERP integration uses the SAP B1 Service Layer REST API (`B1SESSION` cookie) for 
 
 ### Tokenized supplier portal — passwordless
 
-Suppliers are not users in the system. They receive a tokenized link (30-day expiry, regenerable without duplicating the supplier record) that grants access to a single RFQ's quote form. No accounts, no passwords, no onboarding friction. The token itself encodes scope — supplier X can only see RFQ Y, never another's data.
+Suppliers are not users in the system. They receive a tokenized link (30-day expiry, regenerable without duplicating the supplier record) that grants access to a single RFQ's quote form. No accounts, no passwords, no onboarding friction. The token itself encodes scope — supplier X can only see RFQ Y, never another's data. Inviters can optionally attach a CC address per supplier for visibility without granting portal access — a send-time-only field, not persisted.
 
 ### Line-level award with split
 
@@ -158,6 +158,7 @@ Every validation rule runs both in the frontend (Zod schemas) and in the backend
 | **RFQ engine** | Generation from approved request, multi-supplier invitation, tokenized public portal |
 | **Comparative quote analysis** | Side-by-side quote map with line-level highlights |
 | **Award with split** | Multiple suppliers per RFQ, per-line decisions, idempotent sync to SAP B1 |
+| **Multi-customer allocation** | A single approved line can be split and allocated across multiple end customers, each with its own product-line sub-allocation, before syncing to SAP |
 | **Sync recovery** | Pending-sync queue with manual retry for resilience against ERP downtime |
 
 ---
